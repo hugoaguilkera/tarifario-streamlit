@@ -1,0 +1,16 @@
+﻿# Entornos
+.venv/
+__pycache__/
+
+# Audio y media
+*.mp3
+*.m4a
+*.wav
+
+# Temporales
+*.log
+*.tmp
+
+# Sistema
+.DS_Store
+Thumbs.db
