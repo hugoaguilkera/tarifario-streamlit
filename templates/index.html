@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mejor Profit</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #0f172a;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .card {
+            background: #020617;
+            padding: 30px;
+            border-radius: 12px;
+            width: 360px;
+            box-shadow: 0 0 20px #22c55e;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #22c55e;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 8px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 12px;
+            border-radius: 6px;
+            border: none;
+        }
+        pre {
+            background: #020617;
+            padding: 10px;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+<div class="card">
+    <h2>Mejor Profit</h2>
+
+    <input id="origen" placeholder="Origen">
+    <input id="destino" placeholder="Destino">
+
+    <button onclick="cotizar()">Cotizar</button>
+
+    <pre id="resultado"></pre>
+</div>
+
+<script>
+function cotizar() {
+    fetch("/mejor_proveedor", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+            origen: document.getElementById("origen").value,
+            destino: document.getElementById("destino").value
+        })
+    })
+    .then(r => r.json())
+    .then(data => {
+        document.getElementById("resultado").innerText =
+            `Proveedor: ${data.proveedor}
+Precio: ${data.precio}
+Costo: ${data.costo}
+Margen: ${data.margen * 100}%`;
+    });
+}
+</script>
+</body>
+</html>
