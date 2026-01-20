@@ -38,3 +38,4 @@ conn.commit()
 conn.close()
 
 print("✅ Tablas geográficas creadas correctamente.")
+
